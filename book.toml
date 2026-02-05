@@ -1,0 +1,12 @@
+[book]
+title = "Anotações de Stallone"
+authors = ["Stallone L.S."]
+description = "Anotações das atividades e casos excepcionais lidados por Stallone"
+src = "src"
+language = "pt-br"
+text-direction = "ltr"
+
+[output.html]
+search = { enable = true, limit_results = 30, teaser_word_count = 30 }
+default-theme = "Rust"
+print = { enable = true }
