@@ -1,0 +1,22 @@
+* text=auto eol=lf
+
+*.rs    text diff=rust
+*.md    text
+*.toml  text
+*.yml   text
+*.yaml  text
+*.txt   text
+
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.exe   binary
+*.pdf   binary
+
+Cargo.lock binary
+
+*.svg   text linguist-language=SVG
+*.md    linguist-documentation=true
+*.rs    linguist-detectable=true
