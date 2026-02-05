@@ -7,6 +7,8 @@ language = "pt-br"
 text-direction = "ltr"
 
 [output.html]
-search = { enable = true, limit_results = 30, teaser_word_count = 30 }
 default-theme = "Rust"
 print = { enable = true }
+
+[output.html.search]
+limit-results = 30
