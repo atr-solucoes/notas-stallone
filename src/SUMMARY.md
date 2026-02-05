@@ -15,6 +15,7 @@
 - [Faturamento](financeiro/_FATURAMENTO.md)
 	- [UBA](financeiro/uba/uba.md)
 	- [ATR / SISGR]()
+	- [Configuração tributária]()
 	- [BMs]()
 	- [NFS-e, Faturas e Boletos]()
 		- [Reforma tributária 2026]()
