@@ -4,6 +4,10 @@
 
 --- 
 
+# 
+
+---
+
 # Financeiro
 
 - [Diretrizes gerais](financeiro/_DIRETRIZES.md)
@@ -54,7 +58,7 @@
 
 - [Contas à pagar](financeiro/_CONTAS_A_PAGAR.md)
 	- [Fluxo principal]()
-		- [Mapeamento]()
+		- [Mapeamento das demandas]()
 		- [Aprovação]()
 		- [Lançamento]()
 		- [CAP]()
@@ -62,11 +66,14 @@
 		- [DDA]()
 	- [Recuperação de notas]()
 		- [NF - Notas fiscais]()
-		- [NFS - Notas fiscais de serviço]()
+		- [NFS - Notas fiscais de serviço]() <!--# Filtro de emissão-->
 	- [Fluxo de caixa]()
+	- [Situações especiais]()
+		- [BNB - Encargos e Principal]()
+		- [Análise do BM dos aterros]()
 
 ---
 
 - [Contabilidade](financeiro/_CONTABILIDADE.md)
-	- [Fechamento mensal]()
+	- [Fechamento mensal](financeiro/contabil/fechamento.md)
 	- [Orientações conhecidas]()
