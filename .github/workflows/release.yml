@@ -1,0 +1,86 @@
+name: Build and Release Books
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: windows-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 1. Configurar Rust e Cache (Otimizado para o wrapper)
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Rust Cache
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: wrapper -> target
+
+      # 2. Instalar mdBook v0.5.2 (Binário nativo Windows)
+      - name: Install mdBook v0.5.2
+        shell: bash
+        run: |
+          curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.5.2/mdbook-v0.5.2-x86_64-pc-windows-msvc.zip -o mdbook.zip
+          unzip mdbook.zip
+          mv mdbook.exe /usr/bin/
+          mdbook --version
+
+      # 3. Consolidar todos os livros e gerar os HTMLs
+      # O script build_books.sh cria as pastas /book dentro de cada diretório
+      - name: Consolidate Books
+        shell: bash
+        run: |
+          chmod +x build_books.sh
+          ./build_books.sh
+
+      # 4. Loop de Compilação dos Executáveis
+      # Compila um por um, injetando o HTML e o Ícone correspondente
+      - name: Build All Executables
+        shell: bash
+        env:
+          CARGO_INCREMENTAL: 1
+        run: |
+          BOOKS=("financeiro" "ambiental" "sinir" "administrativo" "gerencial")
+          
+          for book in "${BOOKS[@]}"; do
+            echo "-------------------------------------------------------"
+            echo "🛠️ Compilando Executável: $book"
+            echo "-------------------------------------------------------"
+            
+            # Limpa e prepara a pasta de assets que o RustEmbed vai ler
+            rm -rf wrapper/temp_book_src
+            mkdir -p wrapper/temp_book_src
+            
+            # Copia o HTML gerado para a pasta de embutimento
+            cp -r books/$book/book/* wrapper/temp_book_src/
+            
+            # Define o ícone e compila
+            export BOOK_ICON="../icons/$book.ico"
+            cd wrapper
+            cargo build --release
+            
+            # Move o binário final para a raiz com o nome correto
+            mv target/release/manual_interno.exe ../$book.exe
+            cd ..
+          done
+
+      # 5. Publicar na Release do GitHub
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            financeiro.exe
+            ambiental.exe
+            sinir.exe
+            administrativo.exe
+            gerencial.exe
+          body: "Compilação automática de manuais - Versão ${{ github.ref_name }}"
+          generate_release_notes: true

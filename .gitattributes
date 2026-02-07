@@ -1,11 +1,12 @@
 * text=auto eol=lf
 
 *.rs    text diff=rust
-*.md    text
 *.toml  text
+*.md    text linguist-documentation=true
 *.yml   text
 *.yaml  text
 *.txt   text
+*.sh    text eol=lf
 
 *.png   binary
 *.jpg   binary
@@ -15,8 +16,6 @@
 *.exe   binary
 *.pdf   binary
 
-Cargo.lock binary
+*.svg   text linguist-language=SVG -text
 
-*.svg   text linguist-language=SVG
-*.md    linguist-documentation=true
-*.rs    linguist-detectable=true
+Cargo.lock text -diff

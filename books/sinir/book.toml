@@ -1,0 +1,14 @@
+[book]
+authors = ["Stallone L.S."]
+language = "pt-br"
+multilingual = false
+src = "src"
+title = "SINIR"
+
+[output.html]
+destination = "book" 
+search = true 
+additional-css = ["custom.css"]
+
+[build]
+create-missing-sections = true

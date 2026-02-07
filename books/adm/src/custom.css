@@ -1,0 +1,4 @@
+:root { --sidebar-bg: #4b0082; --sidebar-fg: #ffffff; --link-color: #6a0dad; }
+.sidebar { background-color: var(--sidebar-bg) !important; color: var(--sidebar-fg) !important; }
+.sidebar a { color: var(--sidebar-fg) !important; }
+img[src$=".svg"] { display: block; margin: 10px auto; max-width: 100%; height: auto; }
